@@ -149,11 +149,12 @@ const addUserProducts = async (req, res) => {
   console.log(req.file.filename)
   const {
     _id,
-    file,
     desc,
     rating
   } = req.body
+  const filename = req.file.filename
   const product = {
+    filename: filename,
     desc: desc,
     rating: rating
   }

@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema(
         city:  { type: String, default: '' },
         profilePicture:   { type: String, default: '' },
         productAndServices: {
-            type: Array, default:[{photo: '', desc:'',rating:''}]
+            type: Array, default:[{photoFileName: '', desc:'',rating:''}]
         },
     },
     {
