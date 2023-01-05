@@ -2,7 +2,7 @@ require("dotenv").config();
 const upload = require("./routes/upload");
 const Grid = require("gridfs-stream");
 const mongoose = require("mongoose");
-const connection = require("./db");
+const connection = require("./config/db");
 const express = require("express");
 const app = express();
 
