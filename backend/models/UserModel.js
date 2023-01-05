@@ -11,9 +11,9 @@ const userSchema = new mongoose.Schema(
         business_name:  { type: String, default: '' },
         location:  { type: String, default: '' },
         city:  { type: String, default: '' },
-        profilePicture: String,
+        profilePicture:   { type: String, default: '' },
         productAndServices: {
-            type: Array, default:[{photo: {}, rating:''}]
+            type: Array, default:[{photo: '', desc:'',rating:''}]
         },
     },
     {
