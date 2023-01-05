@@ -1,7 +1,9 @@
 require("dotenv").config();
 const upload = require("./routes/upload");
+const userRoutes = require("./routes/userRoutes");
 const Grid = require("gridfs-stream");
 const mongoose = require("mongoose");
+const bodyparser = require('body-parser')
 const connection = require("./config/db");
 const express = require("express");
 const app = express();
@@ -15,7 +17,12 @@ conn.once("open", function () {
     gfs.collection("photos");
 });
 
+
+app.use(bodyparser.json())
+app.use(bodyparser.urlencoded({ extended: true }))
+
 app.use("/file", upload);
+app.use('/mysalon/api/user',userRoutes)
 
 // media routes
 app.get("/file/:filename", async (req, res) => {
