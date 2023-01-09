@@ -43,9 +43,9 @@ const Header = () => {
             </div>
             <div>
               <ul className='flex gap-6'>
-                <li>
+                {/* <li>
                   <Link to="/" className='text-xl'><BsCart4 /></Link>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/login" className='text-xl'><AiOutlineUser /></Link>
                 </li>

@@ -1,4 +1,5 @@
 require("dotenv").config();
+const cors = require('cors')
 const upload = require("./routes/upload");
 const userRoutes = require("./routes/userRoutes");
 const Grid = require("gridfs-stream");
@@ -17,6 +18,12 @@ conn.once("open", function () {
     gfs.collection("photos");
 });
 
+//Allowing For Cross Reference to the Server.
+const corsOption = {
+    origin: '*',
+    Credential: true,
+  }
+  app.use(cors(corsOption))
 
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({ extended: true }))

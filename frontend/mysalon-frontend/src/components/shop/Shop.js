@@ -37,7 +37,7 @@ const Shop = () => {
             price: "500"
         },
         {
-            id: 1,
+            id: 4,
             name: "Spotty waves",
             image: productImage4,
             business_name: "Changes Salon",
@@ -46,7 +46,7 @@ const Shop = () => {
             price: "1000"
         },
         {
-            id: 1,
+            id: 5,
             name: "Round Cut",
             image: productImage,
             business_name: "Changes Salon",
@@ -55,7 +55,7 @@ const Shop = () => {
             price: "500"
         },
         {
-            id: 2,
+            id: 6,
             name: "High Burn",
             image: productImage2,
             business_name: "Changes Salon",
@@ -64,7 +64,7 @@ const Shop = () => {
             price: "800"
         },
         {
-            id: 3,
+            id: 7,
             name: "Clean Fade",
             image: productImage3,
             business_name: "Changes Salon",
@@ -73,7 +73,7 @@ const Shop = () => {
             price: "500"
         },
         {
-            id: 1,
+            id: 8,
             name: "Spotty waves",
             image: productImage4,
             business_name: "Changes Salon",

@@ -65,11 +65,11 @@ const registerUser = async (req, res) => {
   
     //Check If The User Signed Uo With Gooogle.
   
-    if (user.googleId) {
-      return res.status(422).json({
-        error: 'You Signed Up With Google. Please Login With Google To Continue',
-      })
-    }
+    // if (user.googleId) {
+    //   return res.status(422).json({
+    //     error: 'You Signed Up With Google. Please Login With Google To Continue',
+    //   })
+    // }
   
     //Check If There's No User
     if (!user) {
@@ -172,11 +172,27 @@ const addUserProducts = async (req, res) => {
   )
 }
 
+const getBusinessNames = async (req, res) => {
+  // const business_name = req.body.business_name
+  const user = await User.find({})
+  let businesses = []
+  user.forEach((bus, index)=>{
+    businesses.push(bus.business_name)
+  })
+  res.send(businesses)
+}
+const getBusinesses = async (req, res) => {
+  // // const business_name = req.body.business_name
+  const users = await User.find({})
+  res.send(users)
+}
 
   
   module.exports = {
     registerUser,
     loginUser,
     updateUser,
-    addUserProducts
+    addUserProducts,
+    getBusinessNames,
+    getBusinesses,
   }
