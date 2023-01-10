@@ -34,7 +34,7 @@ const Login = () => {
         axios.post('/mysalon/api/user/login', data).then(res=>{
             // localStorage.setItem('auth_token', res.data.data.token)
             // localStorage.setItem('auth_email', email)
-            console.log(data)
+            console.log(res)
             console.log("no error")
         }).catch(function(error){
             if(error.response.status === 401){

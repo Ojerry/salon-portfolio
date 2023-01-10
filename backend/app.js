@@ -20,8 +20,8 @@ conn.once("open", function () {
 
 //Allowing For Cross Reference to the Server.
 const corsOption = {
-    origin: '*',
-    Credential: true,
+    origin: 'http://localhost:3000',
+    credentials: true,
   }
   app.use(cors(corsOption))
 

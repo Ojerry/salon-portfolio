@@ -6,6 +6,7 @@ import productImage2 from '../../assets/images/burnout.jpg'
 import productImage3 from '../../assets/images/cleanfade.jpg'
 import productImage4 from '../../assets/images/wavvy.jpg'
 import ShopItem from './ShopItem'
+import axios from 'axios'
 
 const Shop = () => {
     const defaultProduct = [
@@ -106,11 +107,77 @@ const Shop = () => {
     const viewDetail = () => {
 
     }
+
+    // const getBusinesses = (e) => {
+    //     const data = []
+    //     axios.get('/mysalon/api/user/businesses', data).then(res=>{
+    //         console.log(data)
+    //         console.log("no error")
+    //     }).catch(function(error){
+    //         if(error.response.status === 401){
+    //             console.log("error")
+    //             alert("error")
+    //         }
+    //     })
+    // }
+    const [stores, setStores] = useState([])
+    const data = []
+    
+    useEffect(()=>{
+        axios.get('/mysalon/api/user/businesses').then((res)=>{
+            setStores(res.data)
+        })
+    },[])
+    // var image = new Image();
+    // axios.get(`/file/${product.filename}`).then((res)=>{
+    //     var image = new Image();
+    //     image.src = 'data:image/png;base64,'+ res.data;
+        
+    //     console.log(image)
+        
+    // })
+    // <img src={"http://localhost:8080/file/1673298441884-any-name-OnotuPassport.JPG"} alt="img" className='w-1/2' />
+
   return (
     <>
         <section  className='block h-auto'>
             <div className="container md:w-5/6 mx-auto px-2 md:px-0">
-                <div className='grid md:grid-cols-2 grid-cols-1 justify-center items-center gap-9 my-12'>
+                {stores.map((store)=>{
+                    return(
+                        <div>
+                            <div className='grid md:grid-cols-2 grid-cols-1 justify-center items-center gap-9 my-12'>
+                                <h2 className='text-5xl font-bold leading-tight '>{store.business_name}</h2>
+                            </div>
+                            <div>
+                            <div className='flex flex-wrap'>
+                                {loading && (
+                                    <div className="flex justify-center w-full my-10">
+                                        <Bars
+                                            color='#E1C8B4'
+                                            ariaLabel='loading'
+                                        />
+                                    </div>
+                                )}
+                                {store.productAndServices.map((product)=>{
+                                return(
+
+                                    (product.filename ? <ShopItem
+                                        key={product?.id}
+                                        {...product}
+                                        onClick={() => viewDetail()}
+                                    /> : null)
+                                )
+                            })}
+                            </div>
+                        </div>
+                            
+                            
+                        </div>
+                    )
+                })}
+                
+                
+                {/* <div className='grid md:grid-cols-2 grid-cols-1 justify-center items-center gap-9 my-12'>
                     <h2 className='text-5xl font-bold leading-tight '>Changes Hair Salon</h2>
                 </div>
                 <div>
@@ -131,7 +198,7 @@ const Shop = () => {
                             />
                         ))}
                     </div>
-                </div>
+                </div> */}
 
             </div>
         </section>

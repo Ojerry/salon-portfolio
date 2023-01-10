@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs')
 const Jwt = require('jsonwebtoken')
 const multer = require('multer');
 const formdata = multer();
+// import { nanoid } from 'nanoid';
+// const nanoid = require('nanoid')
 
 /**
  * @api {post} api/v1/user/register Register User
@@ -154,6 +156,7 @@ const addUserProducts = async (req, res) => {
   } = req.body
   const filename = req.file.filename
   const product = {
+    // id: nanoid(),
     filename: filename,
     desc: desc,
     rating: rating

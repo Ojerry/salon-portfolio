@@ -12,7 +12,7 @@ const Header = () => {
             link: '/',
         },
         {
-            name: 'Products',
+            name: 'Add',
             link: '/',
         },
         {
@@ -26,7 +26,7 @@ const Header = () => {
     }
   
     return (
-      <section className='bgColor sticky top-0 z-50'>
+      <section className='bgColor sticky top-0 z-50 bg-white'>
         <div className='container md:w-5/6 w-full mx-auto pt-5 pb-7 px-2 md:px-0'>
           <div className='flex justify-between items-center'>
             <div className='w-40'>
