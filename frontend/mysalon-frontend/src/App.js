@@ -2,6 +2,7 @@ import Pages from './pages';
 import { Provider } from 'react-redux'
 import { store } from './redux/store';
 import axios from 'axios'
+import UserAuthProvider from './context/UserAuthContext'
 
 axios.defaults.baseURL = "http://localhost:8080/"
 axios.defaults.headers.common['Accept'] = '*/*'

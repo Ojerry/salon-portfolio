@@ -12,38 +12,30 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const continueWithGoogle = async () => {
-        // const provider = new firebase.auth.GoogleAuthProvider();
-        // auth.signInWithPopup(provider)
-        //     .catch(err => alert(err.message));
-    }
-
     const logout = () => {
         // auth.signOut()
         //     .catch(err => alert(err.message));
     }
 
     const emailSignup = (e) => {
-        e.preventDefault();
-        e.preventDefault();
+        e.preventDefault()
         console.log("Clicked")
         const data = {
             email : email,
             password : password
         }
         axios.post('/mysalon/api/user/login', data).then(res=>{
-            // localStorage.setItem('auth_token', res.data.data.token)
-            // localStorage.setItem('auth_email', email)
-            console.log(res)
+            localStorage.setItem('auth_token', res.data.token)
+            localStorage.setItem('auth_email', res.data.user.email)
+            localStorage.setItem('user_id', res.data.user._id)
+            console.log(res.data)
             console.log("no error")
         }).catch(function(error){
-            if(error.response.status === 401){
-                console.log("error")
-                alert("error")
-            }
+                console.log(error)
+                localStorage.removeItem('auth_token')
+                localStorage.removeItem('auth_email')
+                localStorage.removeItem('user_id')
         })
-        // auth.createUserWithEmailAndPassword(email, password)
-        //     .catch(err => alert(err.message));
     }
 
     const emailLogin = (e) => {
@@ -86,7 +78,7 @@ const Login = () => {
                                         id="email-address"
                                         name="email"
                                         type="email"
-                                        autoComplete="email"
+                                        autoComplete="off"
                                         required
                                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                         placeholder="Email address"
@@ -102,7 +94,7 @@ const Login = () => {
                                         id="password"
                                         name="password"
                                         type="password"
-                                        autoComplete="current-password"
+                                        autoComplete="off"
                                         required
                                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                         placeholder="Password"
@@ -142,24 +134,6 @@ const Login = () => {
                                 </button>
                             </div>
                         </form>
-                        {/* Social login */}
-                        <div className="mt-5">
-                            <div className="text-center">
-                                <p className="text-sm leading-5 text-gray-500">
-                                    Or sign in with
-                                </p>
-                            </div>
-                            <div className="mt-5">
-                                <button
-                                    type="button"
-                                    className="flex items-center justify-center w-full p-3 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 bg-opacity-10 hover:bg-opacity-20"
-                                    onClick={continueWithGoogle}
-                                >
-                                    <FcGoogle size={30} />
-                                    <span className="ml-3 text-indigo-700 font-semibold">Continue with Google</span>
-                                </button>
-                            </div>
-                        </div>
                     </div>
                 )}
 

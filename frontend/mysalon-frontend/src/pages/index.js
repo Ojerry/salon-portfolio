@@ -8,12 +8,17 @@ import HomePage from "./HomePage";
 import Login from "./Login";
 import SingleItem from "./SingleItem";
 import AddProduct from "./../components/addproduct/AddProduct";
+import { UserAuthProvider } from "../context/UserAuthContext";
 
 function Pages(){
     return(
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<RoutesWrapper />}>
+                <Route path="/" element={
+                    <UserAuthProvider>
+                        <RoutesWrapper />
+                    </UserAuthProvider>
+                }>
                     <Route index element={<HomePage />} />
                     <Route path="products/:id" element={<SingleItem />} />
                     <Route path="add-product" element={<AddProduct />} />
