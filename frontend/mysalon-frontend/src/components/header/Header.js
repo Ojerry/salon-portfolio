@@ -13,7 +13,7 @@ const Header = () => {
         },
         {
             name: 'Add',
-            link: '/',
+            link: '/add-product',
         },
         {
             name: 'Collection',

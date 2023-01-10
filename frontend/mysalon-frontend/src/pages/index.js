@@ -7,6 +7,7 @@ import RoutesWrapper from "./RoutesWrapper";
 import HomePage from "./HomePage";
 import Login from "./Login";
 import SingleItem from "./SingleItem";
+import AddProduct from "./../components/addproduct/AddProduct";
 
 function Pages(){
     return(
@@ -15,6 +16,7 @@ function Pages(){
                 <Route path="/" element={<RoutesWrapper />}>
                     <Route index element={<HomePage />} />
                     <Route path="products/:id" element={<SingleItem />} />
+                    <Route path="add-product" element={<AddProduct />} />
                     <Route path="login" element={<Login />} />
                 </Route>
             </Routes>
