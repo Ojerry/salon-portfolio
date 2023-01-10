@@ -151,6 +151,7 @@ const addUserProducts = async (req, res) => {
   console.log(req.file.filename)
   const {
     _id,
+    name,
     desc,
     rating
   } = req.body
@@ -158,6 +159,7 @@ const addUserProducts = async (req, res) => {
   const product = {
     // id: nanoid(),
     filename: filename,
+    name: name,
     desc: desc,
     rating: rating
   }
