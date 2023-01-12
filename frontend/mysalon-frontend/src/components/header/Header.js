@@ -4,6 +4,7 @@ import { BsCart4 } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import logo from '../../assets/images/myLogo1.png'
+import {useLocation, useNavigate} from 'react-router-dom';
 
 const Header = () => {
     const menus = [
@@ -20,10 +21,23 @@ const Header = () => {
             link: '/',
         },
     ]
+    const location = useLocation()
+    const navigate = useNavigate()
+    const id = localStorage.getItem('user_id')
     const [mobileMenu, setMobileMenu] = useState(false)
     const menuBerger = () => {
       setMobileMenu(!mobileMenu)
     }
+    const logOut = (e) => {
+      e.preventDefault()
+      localStorage.removeItem('auth_email');
+      localStorage.removeItem('auth_token');
+      localStorage.removeItem('user_id');
+      navigate("/login")
+      // dispatch({
+      //     type:"signout", payload:{}
+      // })
+  }
   
     return (
       <section className='bgColor sticky top-0 z-50 bg-white'>
@@ -49,7 +63,7 @@ const Header = () => {
                 <li>
                   <Link to="/login" className='text-xl'><AiOutlineUser /></Link>
                 </li>
-  
+                {id ? <p onClick={logOut} >logout</p> : ""}
                 <li onClick={() => menuBerger()} className='md:hidden block'>
                   <GiHamburgerMenu />
                 </li>

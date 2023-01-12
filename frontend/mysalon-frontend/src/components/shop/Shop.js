@@ -7,6 +7,9 @@ import productImage3 from '../../assets/images/cleanfade.jpg'
 import productImage4 from '../../assets/images/wavvy.jpg'
 import ShopItem from './ShopItem'
 import axios from 'axios'
+import DetailModal from './DetailModal'
+import React from 'react'
+import Modal from "react-modal";
 
 const Shop = () => {
     const defaultProduct = [
@@ -104,28 +107,18 @@ const Shop = () => {
         setLoadedProducts([...loadedProducts, ...newProducts])
       }
 
-    const viewDetail = () => {
-
-    }
-
-    // const getBusinesses = (e) => {
-    //     const data = []
-    //     axios.get('/mysalon/api/user/businesses', data).then(res=>{
-    //         console.log(data)
-    //         console.log("no error")
-    //     }).catch(function(error){
-    //         if(error.response.status === 401){
-    //             console.log("error")
-    //             alert("error")
-    //         }
-    //     })
-    // }
+    
     const [stores, setStores] = useState([])
     const data = []
-    
+    // const [modalIsOpen, setIsOpen] = useState(false);
+    // const viewDetail = () => {
+    //     setIsOpen(!modalIsOpen)
+    //     console.log(modalIsOpen)
+    // }
     useEffect(()=>{
         axios.get('/mysalon/api/user/businesses').then((res)=>{
             setStores(res.data)
+            console.log(res.data)
         })
     },[])
     // var image = new Image();
@@ -163,8 +156,12 @@ const Shop = () => {
 
                                     (product.filename ? <ShopItem
                                         key={product?.id}
+                                        location={store.location}
+                                        city={store.city}
+                                        businessName={store.business_name}
+                                        phone={store.phone}
                                         {...product}
-                                        onClick={() => viewDetail()}
+                                        onClick={()=>{}}
                                     /> : null)
                                 )
                             })}
@@ -176,30 +173,8 @@ const Shop = () => {
                     )
                 })}
                 
+                {/* <DetailModal modalIsOpen={modalIsOpen} setIsOpen={modalIsOpen}/> */}
                 
-                {/* <div className='grid md:grid-cols-2 grid-cols-1 justify-center items-center gap-9 my-12'>
-                    <h2 className='text-5xl font-bold leading-tight '>Changes Hair Salon</h2>
-                </div>
-                <div>
-                    <div className='flex flex-wrap'>
-                        {loading && (
-                            <div className="flex justify-center w-full my-10">
-                                <Bars
-                                    color='#E1C8B4'
-                                    ariaLabel='loading'
-                                />
-                            </div>
-                        )}
-                        {products.map(product => (
-                            <ShopItem
-                            key={product?.id}
-                            {...product}
-                            onClick={() => viewDetail()}
-                            />
-                        ))}
-                    </div>
-                </div> */}
-
             </div>
         </section>
     </>

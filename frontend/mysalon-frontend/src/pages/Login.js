@@ -2,12 +2,14 @@ import { BsFillShieldLockFill } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 // import { auth } from '../utils/firebase';
 // import firebase from 'firebase/firebase-app';
+import { useNavigate, useLocation} from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { selectUser } from "../redux/slices/authSlice"
 import { useState } from 'react';
 import axios from 'axios'
 
 const Login = () => {
+    const navigate = useNavigate()
     const user = useSelector(selectUser)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -16,7 +18,7 @@ const Login = () => {
         // auth.signOut()
         //     .catch(err => alert(err.message));
     }
-
+    const location = useLocation()
     const emailSignup = (e) => {
         e.preventDefault()
         console.log("Clicked")
@@ -30,6 +32,7 @@ const Login = () => {
             localStorage.setItem('user_id', res.data.user._id)
             console.log(res.data)
             console.log("no error")
+            navigate("/add-product")
         }).catch(function(error){
                 console.log(error)
                 localStorage.removeItem('auth_token')

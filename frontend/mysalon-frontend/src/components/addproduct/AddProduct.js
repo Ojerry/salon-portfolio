@@ -12,6 +12,8 @@ const AddProduct = () => {
     const id = localStorage.getItem('user_id')
     const [name, setName] = useState("")
     const [desc, setDesc] = useState("")
+    const [price, setPrice] = useState("")
+    const [uploaded, setUploaded] = useState(false)
 
     const add = (e) =>{
         e.preventDefault();
@@ -21,15 +23,25 @@ const AddProduct = () => {
         formData.append('_id', id)
         formData.append('name', name)
         formData.append('desc', desc)
+        formData.append('price', price)
         axios.post('/mysalon/api/user/addUserProducts', formData).then(res=>{
             // console.log(res)
+            setUploaded(true)
         }).catch(function(error){
             if(error.response.status === 401){
                 console.log("error")
             }
         })
     }
-    if(!user.email){
+    const addMore = () => {
+        setName("")
+        setDesc("")
+        setPrice(null)
+        setUploaded(false)
+        setImage(null)
+    }
+    // console.log(id)
+    if(!id){
         return <Navigate to={'/login'}  replace />;
     }
 
@@ -38,6 +50,10 @@ const AddProduct = () => {
         <div className="text-center font-bold text-2xl">
             <h2>Add Product</h2>
         </div>
+        {uploaded ? <div className="mt-9 bg-lime-300 w-52 text-center h-12">
+        <p>File Uploaded</p>
+        <p onClick={addMore}>Click to Add more...?</p>
+        </div> : null }
 
         <form onSubmit={add} className="mt-8 space-y-6" action="#" method="POST">
         <div class="form-group mb-6">
@@ -56,6 +72,23 @@ const AddProduct = () => {
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Name" name="name" onChange={e => setName(e.target.value)} />
+            </div>
+        <div class="form-group mb-6">
+            <input type="number" class="form-control block
+                w-80
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Price" name="price" onChange={e => setPrice(e.target.value)} />
             </div>
             <div className="text-center w-80">
                 <label>
