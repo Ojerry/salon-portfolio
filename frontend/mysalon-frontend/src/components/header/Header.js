@@ -17,7 +17,7 @@ const Header = () => {
             link: '/add-product',
         },
         {
-            name: 'Collection',
+            name: 'Manage',
             link: '/',
         },
     ]

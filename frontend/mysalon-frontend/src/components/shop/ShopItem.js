@@ -18,7 +18,7 @@ const customStyles = {
     margin:"auto"
   },
 };
-const ShopItem = ({ filename, image, id, company, name, price, onClick, desc, starred, location, city, businessName, phone}) => {
+const ShopItem = ({ filename, image, email, id, company, name, price, onClick, desc, starred, location, city, businessName, phone}) => {
   const navigate = useNavigate()
   
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -95,6 +95,8 @@ const ShopItem = ({ filename, image, id, company, name, price, onClick, desc, st
             <p className='pb-3'><span>Description: {desc}</span></p>
             <p className='pb-3'><span>Location: {location}</span></p>
             <p className='pb-3'><span>Cost: {price} Naira</span></p>
+            <p className='pb-3'><span>Email: {email}</span></p>
+            <p className='pb-3'><span>Phone: {phone}</span></p>
             </div>
             <button className='flex m-auto pt-2 px-4 text-white rounded bg-orange-600' onClick={closeModal}>close</button>
         </Modal>

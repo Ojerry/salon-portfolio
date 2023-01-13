@@ -20,6 +20,10 @@ const Login = () => {
     }
     const location = useLocation()
     const emailSignup = (e) => {
+        
+    }
+
+    const emailLogin = (e) => {
         e.preventDefault()
         console.log("Clicked")
         const data = {
@@ -39,10 +43,6 @@ const Login = () => {
                 localStorage.removeItem('auth_email')
                 localStorage.removeItem('user_id')
         })
-    }
-
-    const emailLogin = (e) => {
-        
         // auth.signInWithEmailAndPassword(email, password)
         //     .catch(err => alert(err.message));
     }
@@ -68,7 +68,7 @@ const Login = () => {
                         <div>
                             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
                         </div>
-                        <form onSubmit={emailSignup} className="mt-8 space-y-6" action="#" method="POST">
+                        <form onSubmit={emailLogin} className="mt-8 space-y-6" action="#" method="POST">
                             <input type="hidden" name="remember" defaultValue="true" />
                             <div className="rounded-md shadow-sm -space-y-px">
                                 <div>
@@ -136,6 +136,7 @@ const Login = () => {
                                     Sign in
                                 </button>
                             </div>
+                            <p  className="ml-2 block text-lg text-gray-900">Register..? <span><a href="/register">Click here</a></span></p>
                         </form>
                     </div>
                 )}
