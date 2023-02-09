@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const Jwt = require('jsonwebtoken')
 const multer = require('multer');
 const formdata = multer();
+require("dotenv").config();
 // import { nanoid } from 'nanoid';
 // const nanoid = require('nanoid')
 
@@ -16,10 +17,10 @@ const formdata = multer();
  * */
 
 const registerUser = async (req, res) => {
-  console.log(req)
-    const { fullName, email, password } = req.body
+  console.log(req.body)
+    const { fullName, email, password, business_name, phone, location, city } = req.body
   
-    if (!fullName || !email || !password) {
+    if (!fullName || !email || !password || !business_name) {
       return res.status(422).json({ error: 'Fill in all fields' })
     }
   
@@ -39,6 +40,10 @@ const registerUser = async (req, res) => {
     const CreateUser = await User.create({
       fullName,
       email,
+      business_name,
+      phone,
+      location,
+      city,
       password: hashPassword,
     })
     return res.status(201).json({
@@ -153,6 +158,7 @@ const addUserProducts = async (req, res) => {
     _id,
     name,
     desc,
+    price,
     rating
   } = req.body
   const filename = req.file.filename
@@ -161,6 +167,7 @@ const addUserProducts = async (req, res) => {
     filename: filename,
     name: name,
     desc: desc,
+    price: price,
     rating: rating
   }
   User.updateOne(
